@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="140dp"
+    android:padding="5dp"
+    android:background="@color/colorGray"
+    android:id="@+id/rowCardView_id">
+
+    <RelativeLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/dRowTvMsg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:text="Title"
+            />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
+

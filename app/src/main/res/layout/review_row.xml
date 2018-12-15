@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="150dp"
+    android:padding="2dp"
+    android:background="@color/colorGray"
+    android:id="@+id/rowCardView_id">
+
+    <LinearLayout
+        android:weightSum="7.5"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_weight="1.5"
+            android:textStyle="bold"
+            android:id="@+id/rowTvAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:gravity="left|center"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:text="Title"
+            />
+
+        <TextView
+            android:layout_weight="4.5"
+            android:layout_below="@+id/rowTvAuthor"
+            android:id="@+id/rowTvContent"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:gravity="left"
+            android:textSize="15dp"
+            android:textColor="#000000"
+            android:text="Title"
+            />
+
+        <Button
+            android:layout_marginTop="3px"
+            android:layout_weight="1.5"
+            android:id="@+id/cardBtnReadMore"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:background="@color/colorTransparent"
+            android:text="Read More"
+            android:textColor="@color/colorPrimary"
+            android:visibility="invisible"
+            />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+

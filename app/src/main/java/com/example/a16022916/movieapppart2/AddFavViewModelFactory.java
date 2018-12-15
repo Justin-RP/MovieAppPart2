@@ -1,0 +1,28 @@
+package com.example.a16022916.movieapppart2;
+
+import android.app.Application;
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProvider;
+
+import com.example.a16022916.movieapppart2.database.AppDatabase;
+
+// COMPLETED (1) Make this class extend ViewModel ViewModelProvider.NewInstanceFactory
+public class AddFavViewModelFactory extends ViewModelProvider.NewInstanceFactory {
+
+    // COMPLETED (2) Add two member variables. One for the database and one for the taskId
+    private final AppDatabase mDb;
+    private final int mTaskId;
+
+    // COMPLETED (3) Initialize the member variables in the constructor with the parameters received
+    public AddFavViewModelFactory(AppDatabase database, int taskId) {
+        mDb = database;
+        mTaskId = taskId;
+    }
+
+    // COMPLETED (4) Uncomment the following method
+    @Override
+        public <T extends ViewModel> T create(Class<T> modelClass) {
+        //noinspection unchecked
+        return (T) new MainViewModel(mDb, mTaskId);
+    }
+}
