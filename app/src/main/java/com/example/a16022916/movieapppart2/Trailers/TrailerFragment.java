@@ -53,7 +53,7 @@ public class TrailerFragment extends Fragment {
 
 
         HttpRequest request = new HttpRequest
-                ("http://api.themoviedb.org/3/movie/"+movieId+"/videos?api_key=" + BuildConfig.ApiKey);
+                ("http://api.themoviedb.org/3/movie/"+movieId+"/videos?api_key=84c758d1cd57e7b7a7947e8880c4648f");
 
         request.setOnHttpResponseListener(mHttpResponseListener);
         request.setMethod("GET");

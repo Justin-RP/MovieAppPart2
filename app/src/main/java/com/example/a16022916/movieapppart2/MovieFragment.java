@@ -36,6 +36,8 @@ public class MovieFragment extends Fragment {
     private RecyclerViewAdapter myAdapter;
     private View view;
     private boolean sortByFav;
+    private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
+    private RecyclerView recyclerView;
 
     private AppDatabase mDb;
 
@@ -62,25 +64,27 @@ public class MovieFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_movie, container, false);
 
         movieList = new ArrayList<>();
-        RecyclerView recyclerView = view.findViewById(R.id.mRecycler_view);
+        recyclerView = view.findViewById(R.id.mRecycler_view);
         myAdapter = new RecyclerViewAdapter(getContext(), movieList);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         recyclerView.setAdapter(myAdapter);
 
         if (sortByFav) {
+//            HttpRequest request = new HttpRequest
+//                    ("http://api.themoviedb.org/3/movie/popular?api_key=" + BuildConfig.ApiKey);
             HttpRequest request = new HttpRequest
-                    ("http://api.themoviedb.org/3/movie/popular?api_key=" + BuildConfig.ApiKey);
+                    ("http://api.themoviedb.org/3/movie/popular?api_key=84c758d1cd57e7b7a7947e8880c4648f");
             request.setOnHttpResponseListener(mHttpResponseListener);
             request.setMethod("GET");
             request.execute();
             HttpRequest secondRequest = new HttpRequest
-                    ("http://api.themoviedb.org/3/movie/top_rated?api_key=" + BuildConfig.ApiKey);
+                    ("http://api.themoviedb.org/3/movie/top_rated?api_key=84c758d1cd57e7b7a7947e8880c4648f");
             secondRequest.setOnHttpResponseListener(mHttpResponseListener);
             secondRequest.setMethod("GET");
             secondRequest.execute();
         } else {
             HttpRequest request = new HttpRequest
-                    ("http://api.themoviedb.org/3/movie/" + sortBy + "?api_key=" + BuildConfig.ApiKey);
+                    ("http://api.themoviedb.org/3/movie/" + sortBy + "?api_key=84c758d1cd57e7b7a7947e8880c4648f");
             request.setOnHttpResponseListener(mHttpResponseListener);
             request.setMethod("GET");
             request.execute();
@@ -186,20 +190,20 @@ public class MovieFragment extends Fragment {
                 }
             };
 
-    public boolean isMovieFavourite(int movieId) {
-        // TODO Check if the movie is starred
-//        String stringId = String.valueOf(movieId);
-//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-//        boolean result = sharedPreferences.getBoolean(stringId, false);
-//        Log.d(DEBUG_TAG, "isMovieFavourite: " + result);
-//        return (sharedPreferences.getBoolean(stringId,false));
-        return false;
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if(savedInstanceState != null)
+        {
+            Parcelable savedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT);
+            recyclerView.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
+        }
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-
-
+        outState.putParcelable(BUNDLE_RECYCLER_LAYOUT, recyclerView.getLayoutManager().onSaveInstanceState());
     }
 }

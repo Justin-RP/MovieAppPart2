@@ -52,7 +52,7 @@ public class ReviewFragment extends Fragment {
         myAdapter = new RecyclerViewAdapterFragment(getContext(), reviewsList);
 
         HttpRequest request = new HttpRequest
-                ("http://api.themoviedb.org/3/movie/"+movieId+"/reviews?api_key=" + BuildConfig.ApiKey);
+                ("http://api.themoviedb.org/3/movie/"+movieId+"/reviews?api_key=84c758d1cd57e7b7a7947e8880c4648f");
 
         request.setOnHttpResponseListener(mHttpResponseListener);
         request.setMethod("GET");
